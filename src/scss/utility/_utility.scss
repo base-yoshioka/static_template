@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+.u{
+	&-fl {
+		float: left;
+	}
+	&-fr {
+		float: right;
+	}
+	&-fn {
+		float: none;
+	}
+	&-flex{
+		display: flex;
+		justify-content: space-between;
+	}
+	&-flex-jf{
+		justify-content: space-between;
+	}
+}
+
+$marginType: (
+	all: ("m", "margin"),
+	top: ("mt", "margin-top"),
+	left: ("ml", "margin-left"),
+	right: ("mr", "margin-right"),
+	bottom: ("mb", "margin-bottom")
+);
+// @each $key, $value in $marginType {
+// 	@for $i from 0 through 100 {
+// 		.u-#{nth($value, 1)}#{$i * 1} {
+// 			#{nth($value, 2)}: #{$i * 1}px;
+// 		}
+// 	}
+// }

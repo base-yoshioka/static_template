@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+// background-image
+// ------------------------------------------------------------------------
+// 第1引数：ファイル名
+
+@mixin background-image($fileName) {
+	background-image: url($PATH_IMG + $fileName);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+// position absolute center
+// ------------------------------------------------------------------------
+// 第1引数：方向（x, y, xy）
+@mixin center($direction) {
+	position: absolute;
+	@if $direction==xy {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	@else if $direction==x {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	@else if $direction==y {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+// clear-fix
+// ------------------------------------------------------------------------
+@mixin cf {
+	zoom: 1;
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+
+// count-inc
+// ------------------------------------------------------------------------
+// 第1引数：カウンター名
+// 第2引数：カウンターの前に表示するテキスト
+// 第3引数：カウンターの後に表示するテキスト
+@mixin counter($numName, $beforeText, $afterText) {
+	content: "#{$beforeText}" counter(num_ + $numName) "#{$afterText}";
+	counter-increment: num_ + $numName;
+}
+
+// hover
+// ------------------------------------------------------------------------
+@mixin hover{
+	transition: .2s;
+	&:hover{
+		transition: .3s;
+		opacity: .75;
+		@include max-screen($BREACKPOINT_SP) {
+			opacity: 1;
+		}
+	}
+}
+
+// icon
+// ------------------------------------------------------------------------
+// 第1引数：ファイル名
+// 第2引数：width
+// 第3引数：height
+@mixin icon($fileName, $width, $height) {
+	background: url($path_img + $fileName) no-repeat 50% 50%;
+	background-size: $width $height;
+	width: $width;
+	height: $height;
+}
+
+// media screen
+// ------------------------------------------------------------------------
+@mixin max-screen($breakPoint) {
+	@media screen and (max-width: $breakPoint) {
+		@content;
+	}
+}
+@mixin min-screen($breakPoint) {
+	@media screen and (min-width: $breakPoint) {
+		@content;
+	}
+}
+@mixin screen($breakPoint_min, $breakPoint_max) {
+	@media screen and (min-width: $breakPoint_min) and (max-width: $breakPoint_max) {
+		@content;
+	}
+}
